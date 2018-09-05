@@ -2,15 +2,15 @@ import os
 import time
 import json
 import warnings
-import numpy as np
-from numpy import newaxis
 from keras.layers.core import Dense, Activation, Dropout
 from keras.layers.recurrent import LSTM
 from keras.models import Sequential
 from keras.models import load_model
 
-configs = json.loads(open(os.path.join(os.path.dirname(__file__), 'configs.json')).read())
-warnings.filterwarnings("ignore") #Hide messy Numpy warnings
+configs = json.loads(
+    open(os.path.join(os.path.dirname(__file__), 'configs.json')).read())
+warnings.filterwarnings("ignore")  # Hide messy Numpy warnings
+
 
 def build_network(layers):
     model = Sequential()
@@ -38,9 +38,10 @@ def build_network(layers):
     print("> Compilation Time : ", time.time() - start)
     return model
 
+
 def load_network(filename):
-    #Load the h5 saved model and weights
-    if(os.path.isfile(filename)):
+    # Load the h5 saved model and weights
+    if os.path.isfile(filename):
         return load_model(filename)
     else:
         print('ERROR: "' + filename + '" file does not exist as a h5 model')
